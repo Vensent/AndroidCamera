@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="name_array">
+        <item>照相摄影</item>
+    </string-array>
+    <string-array name="class_array">
+        <item>CameraSampleActivity</item>
+    </string-array>
+
+</resources>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">AndroidMedia</string>
+    <string name="take_photo">拍照</string>
+    <string name="record_video">录像</string>
+    <string name="camera_select">选择相机</string>
+    <string name="vcr_select">选择录像机</string>
+    <string name="system_recorder">系统录像机</string>
+
+</resources>
