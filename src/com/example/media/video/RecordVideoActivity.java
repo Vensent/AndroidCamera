@@ -22,16 +22,20 @@ import com.example.media.R;
 public class RecordVideoActivity extends Activity implements OnClickListener {
 	
 	private static final int ACTION_TAKE_VIDEO = 1;
+	private static final int CUSTOM_TAKE_VIDEO = 2;
 	private Button sysBtn;
+	private Button cusBtn;
 	private LinearLayout linearLayout;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.video_preview);
+		setContentView(R.layout.video_select);
 		
 		sysBtn = (Button) findViewById(R.id.btn_system);
 		sysBtn.setOnClickListener(this);
+		cusBtn = (Button) findViewById(R.id.btn_custom_recorder);
+		cusBtn.setOnClickListener(this);
 		
 		linearLayout = (LinearLayout) findViewById(R.id.video_linearLayout);
 	}
@@ -44,7 +48,10 @@ public class RecordVideoActivity extends Activity implements OnClickListener {
 				Intent intent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
 				startActivityForResult(intent, ACTION_TAKE_VIDEO);
 				break;
-	
+			case R.id.btn_custom_recorder:
+				Intent intent2 = new Intent(this, RecorderActivity.class);
+				startActivityForResult(intent2, CUSTOM_TAKE_VIDEO);
+				break;
 			default:
 				break;
 		}

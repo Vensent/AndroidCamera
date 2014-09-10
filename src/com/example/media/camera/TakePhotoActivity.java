@@ -23,7 +23,7 @@ public class TakePhotoActivity extends Activity implements OnClickListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.preview);
+		setContentView(R.layout.camera_select);
 
 		takeBtn1 = (Button) findViewById(R.id.takeBtn1);
 		takeBtn1.setOnClickListener(this);

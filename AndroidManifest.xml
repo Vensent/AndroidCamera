@@ -17,26 +17,32 @@
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity 
-            android:name=".CameraSampleActivity"  />
+        <activity android:name=".CameraSampleActivity" />
         <activity
             android:name=".camera.TakePhotoActivity"
-            android:configChanges="keyboardHidden|orientation" 
+            android:configChanges="keyboardHidden|orientation"
             android:label="@string/camera_select" />
         <activity
             android:name=".camera.CameraActivity"
             android:configChanges="keyboardHidden|orientation" />
         <activity
             android:name=".video.RecordVideoActivity"
-            android:configChanges="keyboardHidden|orientation" 
+            android:configChanges="keyboardHidden|orientation"
             android:label="@string/vcr_select" />
+        <activity
+            android:name=".video.RecorderActivity"
+            android:screenOrientation="landscape"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
     </application>
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <uses-feature android:name="android.hardware.camera" />
 
 </manifest>

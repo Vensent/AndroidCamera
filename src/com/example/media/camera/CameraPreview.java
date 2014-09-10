@@ -8,6 +8,7 @@ import android.hardware.Camera;
 import android.hardware.Camera.AutoFocusCallback;
 import android.hardware.Camera.Parameters;
 import android.hardware.Camera.PictureCallback;
+import android.os.Handler;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.SurfaceHolder;
@@ -62,6 +63,7 @@ public class CameraPreview extends SurfaceView implements Callback {
 		try {
 			// 设置用于显示拍照摄像的SurfaceHolder对象
 			camera.setPreviewDisplay(holder);
+			getFocus();
 		} catch (IOException e) {
 			e.printStackTrace(); 
             // 释放手机摄像头 
@@ -109,23 +111,34 @@ public class CameraPreview extends SurfaceView implements Callback {
 			camera.autoFocus(new AutoFocusCallback() {
 				@Override 
 				public void onAutoFocus(boolean success, Camera camera) {
-					if (listener != null)
+					if (listener != null && success)
 					{
 						listener.onAutoFocus(success);
 					}
-					// 自动对焦成功后才拍摄
-					if (success) { 
-//                        camera.takePicture(null, null, pictureCallback); 
+					else if (!success) { 
+						getFocus();
                     } 
 				}
 			});
 		}
 	}
 	
+	protected Camera getCamera() {
+		return camera;
+	}
+
 	public void takePicture(){
 		Log.d("Note 5", "====takePicture.=====");
 		getFocus();
-		camera.takePicture(null, null, pictureCallback);
+		
+		new Handler().postDelayed(new Runnable() {
+			
+			@Override
+			public void run() {
+				
+				camera.takePicture(null, null, pictureCallback);
+			}
+		}, 800);
 	}
 	
 	// 设置监听事件

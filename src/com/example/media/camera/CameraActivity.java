@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 
 import android.app.Activity;
 import android.content.ContentResolver;
@@ -27,7 +26,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.example.media.R;
 import com.example.media.camera.CameraPreview.OnCameraStatusListener;
@@ -90,7 +88,6 @@ public class CameraActivity extends Activity implements OnCameraStatusListener{
     			dir.mkdir();
     		}
     		File file = new File(dir, filename);
-//    		File file = File.createTempFile(filename, null, dir);
     		if (file != null) 
     		{
     			fos = new FileOutputStream(file);
@@ -166,12 +163,6 @@ public class CameraActivity extends Activity implements OnCameraStatusListener{
 		if (success)
 		{
 			focusView.setImageResource(R.drawable.focus2);
-		}
-		else
-		{
-			focusView.setImageResource(R.drawable.focus1);
-			Toast.makeText(this, "½¹¾à²»×¼£¬ÇëÖØÅÄ£¡", Toast.LENGTH_LONG).show();
-			isTaking = false;
 		}
 	}
 	
