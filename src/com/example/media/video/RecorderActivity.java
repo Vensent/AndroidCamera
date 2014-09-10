@@ -20,6 +20,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageButton;
 
 import com.example.media.R;
 
@@ -37,6 +38,7 @@ public class RecorderActivity extends Activity {
 	private Camera mCamera;
 	private MediaRecorder mMediaRecorder;
 	private boolean isRecording = false;
+	private ImageButton mImageButton;
 	
 	private PictureCallback mPicture = new PictureCallback() {
 		@Override
@@ -83,11 +85,19 @@ public class RecorderActivity extends Activity {
             // inform the user that recording has stopped
 //            setCaptureButtonText("Capture");
             isRecording = false;
+            finish();
         } else {
+        	mImageButton.setImageResource(R.drawable.btn_video_button_pressed);
             // initialize video camera
             if (prepareVideoRecorder()) {
                 // Camera is available and unlocked, MediaRecorder is prepared,
                 // now you can start recording
+            	mImageButton.postDelayed(new Runnable() {
+    				@Override
+    				public void run() {
+    					mImageButton.setImageResource(R.drawable.btn_video_button_stop_default);
+    				}
+    			}, 2000);
                 mMediaRecorder.start();
 
                 // inform the user that recording has started
@@ -114,6 +124,7 @@ public class RecorderActivity extends Activity {
 		setContentView(R.layout.recorder);
 		mRecorderPreview = (RecorderPreview)findViewById(R.id.recorder_preview);
 		mCamera = mRecorderPreview.getmCamera();
+		mImageButton = (ImageButton) findViewById(R.id.btn_recordVideo);
 	}
 	
 //	/**

@@ -23,7 +23,7 @@
     	    android:src="@drawable/focus1" />
 
     	<ImageButton
-    	    android:id="@+id/btn_takePicture"
+    	    android:id="@+id/btn_recordVideo"
     	    android:layout_width="95dp"
     	    android:layout_height="95dp"
     	    android:layout_alignParentRight="true"
