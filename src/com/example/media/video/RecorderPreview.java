@@ -24,19 +24,18 @@ public class RecorderPreview extends SurfaceView implements SurfaceHolder.Callba
     public Camera getmCamera() {
 		return mCamera;
 	}
+    
+    public RecorderPreview(Context context, AttributeSet attrs) {
+		// Preview类构造方法
+	    super(context, attrs);
+		// 获得SurfaceHolder对象
+		mHolder = getHolder();
+		// 指定用于捕捉拍照事件的SurfaceHolder.Callback对象
+		mHolder.addCallback(this);
+		// 设置SurfaceHolder对象的类型 
+	    mHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
+	}
 
-	// Preview类构造方法
- 	@SuppressWarnings("deprecation")
- 	public RecorderPreview(Context context, AttributeSet attrs) {
- 		super(context, attrs);
- 		// 获得SurfaceHolder对象
- 		mHolder = getHolder();
- 		// 指定用于捕捉拍照事件的SurfaceHolder.Callback对象
- 		mHolder.addCallback(this);
- 		// 设置SurfaceHolder对象的类型 
- 		mHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
- 	}
- 	
     public void surfaceCreated(SurfaceHolder holder) {
         // The Surface has been created, now tell the camera where to draw the preview.
     	mCamera = Camera.open();
