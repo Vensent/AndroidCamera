@@ -21,7 +21,20 @@
     	    android:layout_height="wrap_content"
     	    android:layout_centerInParent="true"
     	    android:src="@drawable/focus1" />
-    	
+
+    	<ImageButton
+    	    android:id="@+id/btn_takePicture"
+    	    android:layout_width="95dp"
+    	    android:layout_height="95dp"
+    	    android:layout_alignParentRight="true"
+    	    android:layout_centerVertical="true"
+    	    android:adjustViewBounds="true"
+    	    android:background="@android:color/transparent"
+    	    android:padding="12dp"
+    	    android:scaleType="fitCenter"
+    	    android:src="@drawable/btn_shutter_new_default" 
+    	    android:onClick="onClick_takePicture"/>
+
    	</RelativeLayout>
 
 </LinearLayout>

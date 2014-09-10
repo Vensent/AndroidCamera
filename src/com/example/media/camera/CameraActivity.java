@@ -17,12 +17,15 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.MotionEvent;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -39,6 +42,7 @@ public class CameraActivity extends Activity implements OnCameraStatusListener{
 	private CameraPreview mCameraPreview;
 	private ImageView focusView;
 	private boolean isTaking = false; //≈ƒ’’÷–
+	private ImageButton btnTakePicture;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +61,7 @@ public class CameraActivity extends Activity implements OnCameraStatusListener{
         mCameraPreview.setOnCameraStatusListener(this);
         // Ωπµ„Õº∆¨
         focusView = (ImageView) findViewById(R.id.focusView);
+        btnTakePicture = (ImageButton) findViewById(R.id.btn_takePicture);
     }
 
     /**
@@ -65,8 +70,7 @@ public class CameraActivity extends Activity implements OnCameraStatusListener{
     @Override
 	public boolean onTouchEvent(MotionEvent event) {
     	if (event.getAction() == MotionEvent.ACTION_DOWN && !isTaking){
-    		isTaking = true;
-    		mCameraPreview.takePicture();
+    		mCameraPreview.getFocus();
     	}
 		return super.onTouchEvent(event);
 	}
@@ -169,6 +173,22 @@ public class CameraActivity extends Activity implements OnCameraStatusListener{
 			Toast.makeText(this, "Ωπæ‡≤ª◊º£¨«Î÷ÿ≈ƒ£°", Toast.LENGTH_LONG).show();
 			isTaking = false;
 		}
-		
 	}
+	
+	public void onClick_takePicture(View view){
+		
+		btnTakePicture.setImageResource(R.drawable.btn_shutter_new_pressed);
+		
+		new Handler().postDelayed(new Runnable() {
+			
+			@Override
+			public void run() {
+				btnTakePicture.setImageResource(R.drawable.btn_shutter_new_default);
+			}
+		}, 500);
+		
+		isTaking = true;
+		mCameraPreview.takePicture();
+	}
+	
 }

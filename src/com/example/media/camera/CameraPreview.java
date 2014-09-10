@@ -101,8 +101,8 @@ public class CameraPreview extends SurfaceView implements Callback {
 		camera.release();
 	}
 	
-	public void takePicture(){
-		Log.d("Note 4", "====takePicture.=====");
+	public void getFocus(){
+		Log.d("Note 4", "====GetFocus.=====");
 		if (camera != null)
 		{
 			// 自动对焦
@@ -120,6 +120,12 @@ public class CameraPreview extends SurfaceView implements Callback {
 				}
 			});
 		}
+	}
+	
+	public void takePicture(){
+		Log.d("Note 5", "====takePicture.=====");
+		getFocus();
+		camera.takePicture(null, null, pictureCallback);
 	}
 	
 	// 设置监听事件
